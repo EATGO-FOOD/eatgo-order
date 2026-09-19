@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EATGO - Online Order</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f7f7f7;color:#333}
+header{background:#f58220;color:#fff;padding:18px 15px;text-align:center;position:sticky;top:0;z-index:100}
+header h1{margin:0;font-size:30px;font-weight:800}
+header p{margin:5px 0 0;font-size:14px}
+.container{max-width:1000px;margin:auto;padding:15px}
+.category{margin-top:25px}
+.category-title{background:#f58220;color:#fff;padding:10px 15px;border-radius:10px;font-size:20px;font-weight:bold;margin-bottom:12px}
+.products{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.product{background:#fff;border-radius:12px;padding:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.product img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:10px;background:#fff}
+.product-name{font-size:16px;font-weight:bold;margin:8px 0 4px}
+.price{color:#f58220;font-weight:bold;font-size:16px;margin-bottom:8px}
+.add-btn{width:100%;border:0;background:#f58220;color:#fff;padding:9px;border-radius:8px;font-size:15px;font-weight:bold;cursor:pointer}
+.cart,.customer{background:#fff;margin-top:30px;padding:18px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.cart h2,.customer h2{margin-top:0}
+.cart-item{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding:10px 0;gap:10px}
+.cart-name{flex:1;font-weight:bold}.qty{display:flex;align-items:center;gap:7px}
+.qty button{width:30px;height:30px;border:0;border-radius:6px;background:#f58220;color:#fff;font-size:18px}
+.total{text-align:right;font-size:20px;font-weight:bold;color:#f58220;margin-top:15px}
+.empty{color:#999;text-align:center;padding:10px}
+.customer label{display:block;margin-top:12px;margin-bottom:5px;font-weight:bold}
+.customer input,.customer select,.customer textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:8px;font-size:15px}
+.order-btn{width:100%;margin-top:20px;background:#25D366;color:#fff;border:0;padding:14px;border-radius:10px;font-size:18px;font-weight:bold}
+@media(min-width:700px){.products{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<header><h1>EATGO</h1><p>Online Food Ordering</p></header>
+<div class="container">
+
+<div class="category"><div class="category-title">🍚 NASI</div><div class="products">
+<div class="product"><img src="Nasi_Ayam_Lada_Hitam.jpg"><div class="product-name">Nasi Ayam Lada Hitam</div><div class="price">Rp15.000</div><button class="add-btn" onclick="addItem('Nasi Ayam Lada Hitam',15000)">Tambah</button></div>
+<div class="product"><img src="Nasi_Ayam_Teriyaki.jpg"><div class="product-name">Nasi Ayam Teriyaki</div><div class="price">Rp15.000</div><button class="add-btn" onclick="addItem('Nasi Ayam Teriyaki',15000)">Tambah</button></div>
+<div class="product"><img src="Nasi_Ayam_Kari.jpg"><div class="product-name">Nasi Ayam Kari</div><div class="price">Rp12.000</div><button class="add-btn" onclick="addItem('Nasi Ayam Kari',12000)">Tambah</button></div>
+<div class="product"><img src="Nasi_Ayam_Tempe.jpg"><div class="product-name">Nasi Ayam Tempe</div><div class="price">Rp10.000</div><button class="add-btn" onclick="addItem('Nasi Ayam Tempe',10000)">Tambah</button></div>
+<div class="product"><img src="Nasi_Goreng_Telur.jpg"><div class="product-name">Nasi Goreng Telur</div><div class="price">Rp10.000</div><button class="add-btn" onclick="addItem('Nasi Goreng Telur',10000)">Tambah</button></div>
+<div class="product"><img src="Nasi_Ayam_Katsu.jpg"><div class="product-name">Nasi Ayam Katsu</div><div class="price">Rp20.000</div><button class="add-btn" onclick="addItem('Nasi Ayam Katsu',20000)">Tambah</button></div>
+<div class="product"><img src="Nasi_Telur_Pontianak.jpg"><div class="product-name">Nasi Telur Pontianak</div><div class="price">Rp15.000</div><button class="add-btn" onclick="addItem('Nasi Telur Pontianak',15000)">Tambah</button></div>
+<div class="product"><img src="Gado_Gado_Komplit_Nasi_Telur.jpg"><div class="product-name">Gado-Gado Komplit Nasi + Telur</div><div class="price">Rp25.000</div><button class="add-btn" onclick="addItem('Gado-Gado Komplit Nasi + Telur',25000)">Tambah</button></div>
+</div></div>
+
+<div class="category"><div class="category-title">🍜 MIE</div><div class="products">
+<div class="product"><img src="Mie_Ayam_Bakso.jpg"><div class="product-name">Mie Ayam Bakso</div><div class="price">Rp20.000</div><button class="add-btn" onclick="addItem('Mie Ayam Bakso',20000)">Tambah</button></div>
+<div class="product"><img src="Mie_Ayam_Pangsit_Rebus.jpg"><div class="product-name">Mie Ayam Pangsit Rebus</div><div class="price">Rp20.000</div><button class="add-btn" onclick="addItem('Mie Ayam Pangsit Rebus',20000)">Tambah</button></div>
+<div class="product"><img src="Mie_Ayam_Polos.jpg"><div class="product-name">Mie Ayam Polos</div><div class="price">Rp15.000</div><button class="add-btn" onclick="addItem('Mie Ayam Polos',15000)">Tambah</button></div>
+<div class="product"><img src="Mie_Ayam_Pedas.jpg"><div class="product-name">Mie Ayam Pedas</div><div class="price">Rp15.000</div><button class="add-btn" onclick="addItem('Mie Ayam Pedas',15000)">Tambah</button></div>
+</div></div>
+
+<div class="category"><div class="category-title">🥟 PANGSIT</div><div class="products">
+<div class="product"><img src="Pangsit_Goreng.jpg"><div class="product-name">Pangsit Goreng</div><div class="price">Rp15.000</div><button class="add-btn" onclick="addItem('Pangsit Goreng',15000)">Tambah</button></div>
+<div class="product"><img src="Pangsit_Rebus.jpg"><div class="product-name">Pangsit Rebus</div><div class="price">Rp15.000</div><button class="add-btn" onclick="addItem('Pangsit Rebus',15000)">Tambah</button></div>
+</div></div>
+
+<div class="category"><div class="category-title">🍌 CAMILAN</div><div class="products">
+<div class="product"><img src="Cireng_Bumbu_Rujak.jpg"><div class="product-name">Cireng Bumbu Rujak</div><div class="price">Rp10.000</div><button class="add-btn" onclick="addItem('Cireng Bumbu Rujak',10000)">Tambah</button></div>
+<div class="product"><img src="Donat_Keju.jpg"><div class="product-name">Donat Keju</div><div class="price">Rp13.000</div><button class="add-btn" onclick="addItem('Donat Keju',13000)">Tambah</button></div>
+<div class="product"><img src="Donat_Salju.jpg"><div class="product-name">Donat Salju</div><div class="price">Rp10.000</div><button class="add-btn" onclick="addItem('Donat Salju',10000)">Tambah</button></div>
+<div class="product"><img src="Singkong_Keju_Coklat.jpg"><div class="product-name">Singkong Keju Coklat</div><div class="price">Rp13.000</div><button class="add-btn" onclick="addItem('Singkong Keju Coklat',13000)">Tambah</button></div>
+<div class="product"><img src="Pisang_Goreng_Wijen_Keju_Coklat.jpg"><div class="product-name">Pisang Goreng Wijen Keju Coklat</div><div class="price">Rp15.000</div><button class="add-btn" onclick="addItem('Pisang Goreng Wijen Keju Coklat',15000)">Tambah</button></div>
+<div class="product"><img src="Singkong_Keju.jpg"><div class="product-name">Singkong Keju</div><div class="price">Rp10.000</div><button class="add-btn" onclick="addItem('Singkong Keju',10000)">Tambah</button></div>
+<div class="product"><img src="Pisang_Goreng_Wijen.jpg"><div class="product-name">Pisang Goreng Wijen</div><div class="price">Rp10.000</div><button class="add-btn" onclick="addItem('Pisang Goreng Wijen',10000)">Tambah</button></div>
+<div class="product"><img src="Pisang_Goreng_Wijen_Keju.jpg"><div class="product-name">Pisang Goreng Wijen Keju</div><div class="price">Rp13.000</div><button class="add-btn" onclick="addItem('Pisang Goreng Wijen Keju',13000)">Tambah</button></div>
+</div></div>
+
+<div class="category"><div class="category-title">🥤 MINUMAN</div><div class="products">
+<div class="product"><img src="Es_Teh_Lemon_Manis.jpg"><div class="product-name">Es Teh Lemon Manis</div><div class="price">Rp6.000</div><button class="add-btn" onclick="addItem('Es Teh Lemon Manis',6000)">Tambah</button></div>
+<div class="product"><img src="Kopi_Hitam.jpg"><div class="product-name">Kopi Hitam</div><div class="price">Rp7.000</div><button class="add-btn" onclick="addItem('Kopi Hitam',7000)">Tambah</button></div>
+<div class="product"><img src="Kopi_Susu.jpg"><div class="product-name">Kopi Susu</div><div class="price">Rp10.000</div><button class="add-btn" onclick="addItem('Kopi Susu',10000)">Tambah</button></div>
+<div class="product"><img src="Coklat_Latte.jpg"><div class="product-name">Coklat Latte</div><div class="price">Rp10.000</div><button class="add-btn" onclick="addItem('Coklat Latte',10000)">Tambah</button></div>
+<div class="product"><img src="Taro.jpg"><div class="product-name">Taro</div><div class="price">Rp10.000</div><button class="add-btn" onclick="addItem('Taro',10000)">Tambah</button></div>
+<div class="product"><img src="Kopi_Cokelat.jpg"><div class="product-name">Kopi Cokelat</div><div class="price">Rp10.000</div><button class="add-btn" onclick="addItem('Kopi Cokelat',10000)">Tambah</button></div>
+<div class="product"><img src="Kopi_Butterscotch.jpg"><div class="product-name">Kopi Butterscotch</div><div class="price">Rp12.000</div><button class="add-btn" onclick="addItem('Kopi Butterscotch',12000)">Tambah</button></div>
+<div class="product"><img src="Kopi_Karamel.jpg"><div class="product-name">Kopi Karamel</div><div class="price">Rp12.000</div><button class="add-btn" onclick="addItem('Kopi Karamel',12000)">Tambah</button></div>
+<div class="product"><img src="Red_Velvet.jpg"><div class="product-name">Red Velvet</div><div class="price">Rp10.000</div><button class="add-btn" onclick="addItem('Red Velvet',10000)">Tambah</button></div>
+</div></div>
+
+<div class="cart"><h2>🛒 Pesanan Anda</h2><div id="cartItems"><div class="empty">Belum ada pesanan</div></div><div class="total">Total: <span id="total">Rp0</span></div></div>
+
+<div class="customer"><h2>📋 Data Pemesan</h2>
+<label>Nama</label><input type="text" id="customerName" placeholder="Masukkan nama">
+<label>WhatsApp</label><input type="tel" id="customerPhone" placeholder="08xxxxxxxxxx">
+<label>Tipe Pesanan</label><select id="orderType"><option value="Ambil Sendiri">Ambil Sendiri</option><option value="Delivery">Delivery</option></select>
+<label>Alamat / Catatan</label><textarea id="address" rows="3" placeholder="Alamat delivery atau catatan pesanan"></textarea>
+<button class="order-btn" onclick="submitOrder()">Kirim Pesanan</button>
+</div>
+</div>
+
+<script>
+let cart=[];
+function addItem(name,price){let x=cart.find(i=>i.name===name);if(x)x.qty++;else cart.push({name,price,qty:1});renderCart()}
+function changeQty(i,c){cart[i].qty+=c;if(cart[i].qty<=0)cart.splice(i,1);renderCart()}
+function renderCart(){let e=document.getElementById("cartItems"),t=document.getElementById("total");if(!cart.length){e.innerHTML='<div class="empty">Belum ada pesanan</div>';t.innerText="Rp0";return}let h="",total=0;cart.forEach((x,i)=>{let s=x.price*x.qty;total+=s;h+=`<div class="cart-item"><div class="cart-name">${x.name}<br><small>Rp${x.price.toLocaleString("id-ID")}</small></div><div class="qty"><button onclick="changeQty(${i},-1)">−</button><strong>${x.qty}</strong><button onclick="changeQty(${i},1)">+</button></div><strong>Rp${s.toLocaleString("id-ID")}</strong></div>`});e.innerHTML=h;t.innerText="Rp"+total.toLocaleString("id-ID")}
+function submitOrder(){if(!cart.length){alert("Silakan pilih menu terlebih dahulu.");return}let name=document.getElementById("customerName").value.trim(),phone=document.getElementById("customerPhone").value.trim(),type=document.getElementById("orderType").value,address=document.getElementById("address").value.trim();if(!name){alert("Silakan masukkan nama.");return}if(!phone){alert("Silakan masukkan nomor WhatsApp.");return}let msg="EATGO - PESANAN BARU\n\nNama: "+name+"\nWhatsApp: "+phone+"\nTipe: "+type+"\n";if(address)msg+="Alamat/Catatan: "+address+"\n";msg+="\nPesanan:\n";let total=0;cart.forEach(x=>{let s=x.price*x.qty;msg+="- "+x.name+" x"+x.qty+" = Rp"+s.toLocaleString("id-ID")+"\n";total+=s});msg+="\nTOTAL: Rp"+total.toLocaleString("id-ID");alert(msg)}
+</script>
+</body>
+</html>
